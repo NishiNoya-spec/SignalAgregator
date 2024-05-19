@@ -1,0 +1,59 @@
+[build-system]
+requires = [
+    "setuptools >= 40.6.0",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.isort]
+profile = "black"
+known_first_party = "tpqc"
+known_evraz = "evraz"
+sections=["FUTURE", "STDLIB", "THIRDPARTY", "EVRAZ", "FIRSTPARTY", "LOCALFOLDER"]
+line_length = 80
+
+
+[tool.yapf]
+based_on_style = "pep8"
+spaces_before_comment = 4
+column_limit = 80
+allow_split_before_dict_value = false
+dedent_closing_brackets = true
+split_complex_comprehension = true
+split_arguments_when_comma_terminated = true
+blank_line_before_nested_class_or_def = true
+
+split_before_dict_set_generator = true
+split_before_first_argument = true
+split_before_arithmetic_operator = true
+split_before_logical_operator = true
+split_before_bitwise_operator = true
+
+
+[tool.flake8]
+max-line-length = 80
+select = ['F', 'E', 'W', ]
+ignore = ['W503', 'E501','E111','E117','E225']
+per-file-ignores = [
+    'heap/*:F401',
+]
+count = true
+
+[tool.pylint]
+max-line-length = 80
+ignore = ["heap"]
+extension-pkg-whitelist = [
+    "falcon",
+    "pydantic",
+]
+# C0114: Missing module docstring
+# C0115: Missing class docstring
+# C0116: Missing function or method docstring
+# R0801: Similar lines in 2 files
+# R0902: Too many instance attributes
+# R0903: Too few public methods
+disable = ["C0114", "C0115", "C0116", "R0801", "R0902", "R0903"]
+good-names = [
+    "a", "b", "c", "d", "df", "i", "logger", "n", "tz", "id",
+    "LOGGING_CONFIG",
+]
